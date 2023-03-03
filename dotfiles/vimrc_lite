@@ -1,0 +1,75 @@
+set nocompatible
+let mapleader=','
+
+filetype indent plugin on
+let g:python_highlight_all=1
+
+syntax on
+
+set modeline
+set number relativenumber
+set autoread
+set showmatch
+set clipboard^=unnamed,unnamedplus
+set showtabline=2
+
+map <Up> <c-y>
+map <Down> <c-e>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+set dictionary+=/usr/share/dict/words
+
+set expandtab
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set copyindent
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=88 |
+    \ set expandtab |
+    \ set autoindent
+
+au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+set noswapfile
+set nobackup
+set nowb
+
+colorscheme koehler
+autocmd Filetype tex highlight clear texItalStyle
+
+let test#strategy="make"
+
+set wildignore=*.o,*.obj,*.bak,*.exe,*pyc,*.a,*.lib,*.dll,*.so
+let g:netrw_list_hide = netrw_gitignore#Hide() . ',.git'
+
+set colorcolumn=80
+autocmd Filetype rust set colorcolumn=100
+hi ColorColumn ctermbg=236
+
+set laststatus=2
+
+nnoremap <leader>x :pclose<CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nmap cc <leader>c<space>
+vmap cc <leader>c<space>
+nnoremap <Tab> :bnext!<CR>
+nnoremap <S-Tab> :bprevious!<CR>
+nnoremap <C-x> :bd<CR>
+
+command Bd :b
+
+set incsearch
+autocmd InsertEnter * :let @/=""
+autocmd InsertLeave * :let @/=""
+
+autocmd Filetype cpp set keywordprg=cppman
