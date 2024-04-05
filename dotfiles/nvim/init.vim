@@ -1,0 +1,318 @@
+set nocompatible
+let mapleader=','         "use ',' instead of '\' for <leader>
+
+filetype off
+
+if empty(glob("~/.config/nvim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+call plug#begin()
+
+ "Plug 'xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+ "Plug 'wolfgangmehner/c-support', {'for': ['c', 'cpp', 'h', 'hpp'] }
+ "Plug 'dense-analysis/ale'
+ "Plug 'vim-test/vim-test'
+ Plug 'vim-airline/vim-airline-themes'
+ Plug 'vim-airline/vim-airline'
+ Plug 'tpope/vim-surround'
+ "Plug 'tpope/vim-repeat'
+ Plug 'tpope/vim-fugitive'
+ "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+ Plug 'scrooloose/nerdcommenter'
+ "Plug 'raimondi/delimitMate'
+ "Plug 'mvanderkamp/vim-pudb-and-jam'
+ "Plug 'majutsushi/tagbar'
+ "Plug 'easymotion/vim-easymotion'
+ "Plug 'davidhalter/jedi-vim'
+ "Plug 'ctrlpvim/ctrlp.vim'
+ "Plug 'cohlin/vim-colorschemes'
+ "Plug 'cjrh/vim-conda'
+ Plug 'airblade/vim-gitgutter'
+ "Plug 'vim-syntastic/syntastic'
+ "Plug 'vim-scripts/a.vim'
+ "Plug 'vim-scripts/TaskList.vim'
+ "Plug 'valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer' } | Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+ "Plug 'tpope/vim-vinegar'
+ "Plug 'tpope/vim-rhubarb'
+ "Plug 'tpope/vim-dispatch'
+ "Plug 'saltstack/salt-vim', { 'for': 'sls' }
+ "Plug 'python-rope/ropevim'
+ "Plug 'peter-edge/vim-capnp', { 'for': 'capnp' }
+ "Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+ "Plug 'mxw/vim-jsx', { 'for': 'jsx' }
+ "Plug 'mephux/vim-jsfmt', { 'for': 'javascript' }
+ "Plug 'mattn/emmet-vim'
+ "Plug 'marijnh/tern_for_vim'
+ "Plug 'llvm-mirror/lldb', { 'rtp': 'lldb/utils/vim-lldb' }
+ "Plug 'junegunn/fzf'
+ "Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+ "Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+ "Plug 'gilligan/vim-lldb'
+ Plug 'edkolev/tmuxline.vim'
+ "Plug 'editorconfig/editorconfig-vim'
+ "Plug 'andreshazard/vim-freemarker', { 'for': 'ftl' }
+ "Plug 'altercation/vim-colors-solarized'
+ " A Vim Plugin for L:ively Previewing LaTeX PDF Output
+ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+ Plug 'nvim-tree/nvim-tree.lua'
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
+ Plug 'ggandor/leap.nvim' 
+ Plug 'tpope/vim-repeat'
+
+"All of your Plugins must be added before the following line
+call plug#end()
+
+" Syntax highlighting
+filetype indent plugin on
+let g:python_highlight_all=1
+
+syntax on
+
+" General configuration
+set modeline
+"set number
+set number relativenumber
+set autoread
+"set mouse=a
+set showmatch
+"set nowrap
+set clipboard^=unnamed,unnamedplus
+
+" Disable arrow keys
+map <Up> <c-y>
+map <Down> <c-e>
+"noremap <Up> <Nop>
+"noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" Update dictionay
+set dictionary+=/usr/share/dict/words
+
+" Tab defaults
+set expandtab
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set copyindent
+
+" PEP8
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=88 |
+    \ set expandtab |
+    \ set autoindent
+
+" Mark whitespace at end of line
+au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Folding
+"set foldmethod=syntax
+"au BufRead,BufNewFile *.py set foldmethod=indent
+
+" Turn off swap
+set noswapfile
+set nobackup
+set nowb
+
+" Solarized colorscheme
+"colorscheme solarized
+"let g:solarized_termcolors=256
+"colorscheme solarized
+"
+"Koehler colorscheme
+colorscheme koehler
+autocmd Filetype tex highlight clear texItalStyle
+
+" py-darcula colorthem
+"colorscheme py-darcula
+"highlight diffRemoved ctermfg=9 guifg=Red
+"highlight diffAdded ctermfg=2 guifg=Green
+
+" pudb configuration
+let g:pudb_sign="B"
+
+" vim-test configuration
+let test#strategy="make"
+
+" NERDTree configuration
+"let NERDTreeHijackNetrw=1
+"let g:NERDTreeNodeDelimiter="\u00a0"
+"let NERDTreeIgnore=['__pycache__']
+"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+"    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+""let NERDTreeQuitOnOpen = 1
+"let NERDTreeMinimalUI = 1
+
+" netrw settings
+set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.a,*.lib,*.dll,*.so
+let g:netrw_list_hide = netrw_gitignore#Hide() . ',.git'
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 1
+"let g:netrw_browse_split = 0
+"let g:netrw_altv = 1
+"let g:netrw_winsize = -25
+
+" Draw column mark
+set colorcolumn=80
+autocmd Filetype rust set colorcolumn=100
+hi ColorColumn ctermbg=236
+
+" Syntastix configuration
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+" Ale configuration
+let g:ale_linters = {'python': ['flake8']}
+let g:ale_fixers = {
+\    'python': ['black', 'isort'],
+\    '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
+" Jedi configurations
+let g:jedi#show_call_signatures = "0"
+
+" YCM configurateion
+"let g:ycm_confirm_extra_conf=0 "Turn off YCM Confirmation dialogs
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_error_symbol='E>'
+let g:ycm_warning_symbol='W>'
+let g:ycm_auto_trigger = 0 "Turn off YCM identifier completer
+let g:ycm_enable_diagnostic_highlighting = 0 "Turn off YCM text highlighting
+let g:ycm_auto_hover = '' " Turn off YCM auto hover popup
+"nnoremap <F2> :YcmCompleter GoTo<CR>
+
+" c-support plugin
+let g:C_UseTool_cmake   = 'yes'
+
+" Status line
+set laststatus=2              	"always show
+"set statusline+=%t            	"tail of the filename
+"set statusline+=\ [%n%H%M%R%W]\ 	"flags and buf no
+"set statusline+=%=      	"left/right separator
+"set statusline+=%{fugitive#statusline()}\   "git status
+"set statusline+=%c,     	"cursor column
+"set statusline+=%l/%L   	"cursor line/total lines
+"set statusline+=\ %P    	"percent through file
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+if has('gui_running')
+  set guifont=Roboto\ Mono\ for\ Powerline
+endif
+"let g:airline_theme = "darcula"
+"let g:airline_theme = "solarized"
+"let g:airline_solarized_bg = "dark"
+
+" vim-conda configuration
+let g:conda_startup_msg_suppress = 1
+let g:python3_host_prog=$CONDA_PREFIX . "/bin/python"
+
+" vim-gitgutter configuration
+highlight! link SignColumn LineNr
+let g:gitgutter_set_sign_backgrounds = 1
+let g:gitgutter_sign_allow_clobber = 1
+"let g:gitgutter_preview_win_floating = 0
+
+" Key bindings
+"map <C-n> :Lex<CR>
+map <C-n> :NvimTreeToggle<CR>
+nnoremap - :NvimTreeFindFile<CR>:wincmd p<CR>
+"nnoremap <leader>o :YcmCompleter GetDoc<CR>
+nnoremap <leader>x :pclose<CR>
+"nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nmap <F8> :TagbarToggle<CR>
+nmap <F9> :PudbToggle<CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nmap cc <leader>c<space>
+vmap cc <leader>c<space>
+nnoremap <Tab> :bnext!<CR>
+nnoremap <S-Tab> :bprevious!<CR>
+nnoremap <C-x> :bd<CR>
+"tnoremap <Esc> <C-\><C-n>
+
+" Close buffer in split window
+command Bd :b # | bd #
+
+" Mouse mapping
+nnoremap <C-LeftMouse> <LeftMouse>:call jedi#goto_definitions()<cr>
+
+" Highlight search
+set incsearch
+"set hlsearch
+autocmd InsertEnter * :let @/=""
+autocmd InsertLeave * :let @/=""
+"autocmd InsertEnter * :setlocal nohlsearch
+"autocmd InsertLeave * :setlocal hlsearch
+
+" Open 'cppman' on <S-k>
+autocmd FileType cpp set keywordprg=cppman
+
+" Neovim config start
+lua require('nvim-tree-setup')
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" COC.nvim
+set encoding=utf-8
+set nobackup
+set nowritebackup
+set updatetime=300
+set signcolumn=yes
+
+    " Trigger completion on space
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
+    " Navigate completion using tabs
+inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#pum#next(1) :
+    \ CheckBackspace() ? "\<Tab>" : "\<TAB>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <leader>o to show documentation in preview window
+nnoremap <silent> <leader>o :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
+    else
+        call feedkeys(',o', 'in')
+    endif
+endfunction
+nnoremap <silent> <leader>x :call coc#float#close_all()<CR>
+
+" Use <leader>jd to jump to definition
+nmap <silent> <leader>jd <Plug>(coc-definition)
+nmap <silent> <leader>jr <Plug>(coc-references)
+nmap <silent> <leader>qf <Plug>(coc-fix-current)
+nmap <silent> <leader>ac <Plug>(coc-codeaction-cursor)
+nnoremap <leader>sd :call CocAction('diagnosticToggle')<CR>
+nnoremap <leader>nd <Plug>(coc-diagnostic-next)
+nnoremap <leader>pd <Plug>(coc-diagnostic-prev)
+
+" leap.nvim
+lua require('leap').create_default_mappings()

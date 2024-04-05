@@ -1,0 +1,26 @@
+{
+    "suggest.autoTrigger": "none",
+    "suggest.floatConfig": {
+        "border": true,
+        "rounded": true
+    },
+    "diagnostic.enable": false,
+    "diagnostic.floatConfig": {
+        "border": true,
+        "rounded": true
+    },
+    "signature.floatConfig": {
+        "border": true,
+        "rounded": true
+    },
+    "hover.floatConfig": {
+        "border": true,
+        "rounded": true
+    },
+    "workspace.ignoredFolders": [
+        "$HOME",
+        "$HOME/.cargo/**",
+        "$HOME/.cargo/**",
+        "$HOME/.rustup/**"
+    ]
+}
