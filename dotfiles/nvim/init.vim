@@ -54,13 +54,14 @@ call plug#begin()
  "Plug 'andreshazard/vim-freemarker', { 'for': 'ftl' }
  "Plug 'altercation/vim-colors-solarized'
  " A Vim Plugin for L:ively Previewing LaTeX PDF Output
- Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+ Plug 'lervag/vimtex', { 'for': 'tex' }
  Plug 'nvim-tree/nvim-tree.lua'
  Plug 'nvim-lua/plenary.nvim'
  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
  Plug 'ggandor/leap.nvim' 
  Plug 'tpope/vim-repeat'
+ Plug 'mhinz/vim-startify'
 
 "All of your Plugins must be added before the following line
 call plug#end()
@@ -76,7 +77,7 @@ set modeline
 "set number
 set number relativenumber
 set autoread
-"set mouse=a
+set mouse=
 set showmatch
 "set nowrap
 set clipboard^=unnamed,unnamedplus
@@ -316,3 +317,7 @@ nnoremap <leader>pd <Plug>(coc-diagnostic-prev)
 
 " leap.nvim
 lua require('leap').create_default_mappings()
+
+" vimtex
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'zathura'
