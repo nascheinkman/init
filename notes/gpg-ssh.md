@@ -30,3 +30,6 @@ Then, export the ssh key
 ```sh
 gpg --export-ssh-key KEY_ID
 ```
+
+# Qubes Split GPG SSH
+https://privsec.dev/posts/qubes/using-split-gpg-and-split-ssh-on-qubes-os/
