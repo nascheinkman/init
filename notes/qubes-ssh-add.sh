@@ -1,9 +1,9 @@
 #!/bin/sh
 SSH_VAULT_VM=$1
 SCRIPT_NAME=$0
-if [ "$SCRIPT_NAME" != "-bash" ]; then
+if [ "$SCRIPT_NAME" != "bash" ]; then
     echo "Make sure to run this script using 'source' instead of executing it as is"
-    exit 1
+    return 1
 fi
 
 if [ "$SSH_VAULT_VM" != "" ]; then
