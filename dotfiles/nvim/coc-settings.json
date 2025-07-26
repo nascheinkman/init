@@ -1,4 +1,5 @@
 {
+    "inlayHint.enable": false,
     "suggest.autoTrigger": "none",
     "suggest.floatConfig": {
         "border": true,
@@ -24,5 +25,5 @@
         "$HOME/.cargo/**",
         "$HOME/.cargo/**",
         "$HOME/.rustup/**"
-    ],
+    ]
 }
