@@ -17,7 +17,7 @@ call plug#begin()
  Plug 'vim-airline/vim-airline'
  "Plug 'tpope/vim-surround'
  "Plug 'tpope/vim-repeat'
- "Plug 'tpope/vim-fugitive'
+ Plug 'tpope/vim-fugitive'
  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
  Plug 'scrooloose/nerdcommenter'
  "Plug 'raimondi/delimitMate'
@@ -55,6 +55,7 @@ call plug#begin()
  "Plug 'altercation/vim-colors-solarized'
  " A Vim Plugin for L:ively Previewing LaTeX PDF Output
  Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+ Plug 'jeetsukumaran/vim-indentwise'
 
 "All of your Plugins must be added before the following line
 call plug#end()
@@ -240,7 +241,7 @@ nnoremap <C-x> :bd<CR>
 "tnoremap <Esc> <C-\><C-n>
 
 " Close buffer in split window
-command Bd :b # | bd #
+"command Bd :b # | bd #
 
 " Mouse mapping
 nnoremap <C-LeftMouse> <LeftMouse>:call jedi#goto_definitions()<cr>

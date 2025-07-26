@@ -54,14 +54,14 @@ call plug#begin()
  "Plug 'andreshazard/vim-freemarker', { 'for': 'ftl' }
  "Plug 'altercation/vim-colors-solarized'
  " A Vim Plugin for L:ively Previewing LaTeX PDF Output
- Plug 'lervag/vimtex', { 'for': 'tex' }
+ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
  Plug 'nvim-tree/nvim-tree.lua'
  Plug 'nvim-lua/plenary.nvim'
  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
  Plug 'ggandor/leap.nvim' 
  Plug 'tpope/vim-repeat'
- Plug 'mhinz/vim-startify'
+ Plug 'jeetsukumaran/vim-indentwise'
 
 "All of your Plugins must be added before the following line
 call plug#end()
@@ -77,7 +77,7 @@ set modeline
 "set number
 set number relativenumber
 set autoread
-set mouse=
+"set mouse=a
 set showmatch
 "set nowrap
 set clipboard^=unnamed,unnamedplus
@@ -253,12 +253,18 @@ command Bd :b # | bd #
 nnoremap <C-LeftMouse> <LeftMouse>:call jedi#goto_definitions()<cr>
 
 " Highlight search
-set incsearch
+"set incsearch
 "set hlsearch
-autocmd InsertEnter * :let @/=""
-autocmd InsertLeave * :let @/=""
+"autocmd InsertEnter * :let @/=""
+"autocmd InsertLeave * :let @/=""
 "autocmd InsertEnter * :setlocal nohlsearch
 "autocmd InsertLeave * :setlocal hlsearch
+set incsearch
+augroup vimrc-incsearch-highlight
+  autocmd!
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
+augroup end
 
 " Open 'cppman' on <S-k>
 autocmd FileType cpp set keywordprg=cppman
@@ -318,6 +324,7 @@ nnoremap <leader>pd <Plug>(coc-diagnostic-prev)
 " leap.nvim
 lua require('leap').create_default_mappings()
 
-" vimtex
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_general_viewer = 'zathura'
+" Structured Text formatting
+au BufNewFile,BufRead *.ST set filetype=st
+
+nnoremap <leader>ln :set rnu!<CR>
