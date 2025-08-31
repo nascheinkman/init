@@ -18,7 +18,8 @@
     "hover.enable": false,
     "hover.floatConfig": {
         "border": true,
-        "rounded": true
+        "rounded": true,
+        "maxWidth": 120
     },
     "workspace.ignoredFolders": [
         "$HOME",
